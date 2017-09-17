@@ -12,6 +12,6 @@ class light_room_1:
             return False
 
         print("irsend SEND_ONCE light_room_1 %s" % self.commands[cmd])
-        # os.system("irsend SEND_ONCE light_room_1 %s" % self.commands[cmd])
+        os.system("irsend SEND_ONCE light_room_1 %s" % self.commands[cmd])
             
         return True

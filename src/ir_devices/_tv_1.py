@@ -10,6 +10,6 @@ class tv_1:
             return False
 
         print("irsend SEND_ONCE tv_1 %s" % self.commands[cmd])
-        # os.system("irsend SEND_ONCE tv_1 %s" % self.commands[cmd])
+        os.system("irsend SEND_ONCE tv_1 %s" % self.commands[cmd])
             
         return True

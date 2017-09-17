@@ -46,7 +46,8 @@ def send_error():
 if __name__ == "__main__":
     websocket.enableTrace(True)
     if len(sys.argv) < 2:
-        host = "ws://localhost:9090/?key=py_secret_key"
+        # host = "ws://localhost:9090/?key=py_secret_key"
+        host = "ws://yahooauc.ap-northeast-1.elasticbeanstalk.com:9090/?key=py_secret_key"
     else:
         host = sys.argv[1]
     ws = websocket.WebSocketApp(host,
