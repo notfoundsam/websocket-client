@@ -2,11 +2,30 @@ import websocket
 from threading import Thread
 import time
 import sys
+import ir_devices
+import json
 
 
 def on_message(ws, message):
-    print(message)
+    request = json.loads(message)
 
+    print request['device']
+
+    if request['device'] == 'ligth_room_1':
+        tmp = ir_devices.light_room_1()
+
+        if tmp.run(request['command']) != True:
+            send_error()
+
+    if request['device'] == 'tv_1':
+        tmp = ir_devices.tv_1()
+
+        if tmp.run(request['command']) != True:
+            send_error()
+
+    else:
+        print(message)
+    
 
 def on_error(ws, error):
     print(error)
@@ -17,25 +36,17 @@ def on_close(ws):
 
 
 def on_open(ws):
-    def run(*args):
-        for i in range(3):
-            # send the message, then wait
-            # so thread doesn't exit and socket
-            # isn't closed
-            ws.send("Hello %d" % i)
-            time.sleep(1)
+    print "aaaaa"
+    # def run(*args):
 
-        time.sleep(1)
-        ws.close()
-        print("Thread terminating...")
-
-    Thread(target=run).start()
+def send_error():
+    print("error")
 
 
 if __name__ == "__main__":
     websocket.enableTrace(True)
     if len(sys.argv) < 2:
-        host = "ws://echo.websocket.org/"
+        host = "ws://localhost:9090/?key=py_secret_key"
     else:
         host = sys.argv[1]
     ws = websocket.WebSocketApp(host,
