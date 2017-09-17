@@ -1,3 +1,5 @@
+import os
+
 class light_room_1:
 
     commands = {

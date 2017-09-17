@@ -1,3 +1,5 @@
+import os
+
 class tv_1:
 
     commands = {
